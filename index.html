@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home Offer Survey</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home Offer Survey</title>
+<style>
     body {
       background: #111;
       color: white;
@@ -47,112 +48,99 @@
   </style>
 </head>
 <body>
-
-  <div id="step1" class="step active">
-    <h2>Is this address correct?</h2>
-    <p id="confirmed-address">Loading...</p>
-    <button onclick="nextStep()">Yes, that's right</button>
-    <button onclick="location.href='https://solvinghomesales.com'">Fix address</button>
-  </div>
-
-  <div id="step2" class="step">
-    <h2>Why are you selling?</h2>
-    <div class="option" onclick="nextStep()">Pre-foreclosure</div>
-    <div class="option" onclick="nextStep()">Financial reasons</div>
-    <div class="option" onclick="nextStep()">Sell & Rent Instead</div>
-    <div class="option" onclick="nextStep()">Sell Without Showing</div>
-    <div class="option" onclick="nextStep()">Tired of Landlord</div>
-    <div class="option" onclick="nextStep()">Retire</div>
-    <div class="option" onclick="nextStep()">Emergency</div>
-    <div class="option" onclick="nextStep()">Home is Vacant</div>
-    <div class="option" onclick="nextStep()">Death in Family</div>
-    <div class="option" onclick="nextStep()">Inherited</div>
-    <div class="option" onclick="nextStep()">Move closer to family</div>
-    <div class="option" onclick="nextStep()">Moving from USA</div>
-  </div>
-
-  <div id="step3" class="step">
-    <h2>What's your timeline?</h2>
-    <div class="option" onclick="nextStep()">2 weeks</div>
-    <div class="option" onclick="nextStep()">1 month</div>
-    <div class="option" onclick="nextStep()">2 months</div>
-    <div class="option" onclick="nextStep()">3 months</div>
-    <div class="option" onclick="nextStep()">4+ months</div>
-  </div>
-
-  <div id="step4" class="step">
-    <h2>Are you the owner of the property, agent or investor?</h2>
-    <div class="option" onclick="nextStep()">Owner</div>
-    <div class="option" onclick="nextStep()">Agent</div>
-    <div class="option" onclick="nextStep()">Investor</div>
-  </div>
-
-  <div id="step5" class="step">
-    <h2>Is there currently a mortgage? If yes, how much do you owe?</h2>
-    <div class="option" onclick="nextStep()">0-25k</div>
-    <div class="option" onclick="nextStep()">25-50k</div>
-    <div class="option" onclick="nextStep()">50-100k</div>
-    <div class="option" onclick="nextStep()">100-150k</div>
-    <div class="option" onclick="nextStep()">150-200k</div>
-    <div class="option" onclick="nextStep()">200-250k</div>
-    <div class="option" onclick="nextStep()">250-300k</div>
-    <div class="option" onclick="nextStep()">300-350k</div>
-    <div class="option" onclick="nextStep()">350-400k</div>
-    <div class="option" onclick="nextStep()">No, nothing owed</div>
-  </div>
-
-  <div id="step6" class="step">
-    <h2>Listed with Realtor OR Listed For Sale By Owner?</h2>
-    <div class="option" onclick="disqualify()">Yes</div>
-    <div class="option" onclick="nextStep()">No</div>
-  </div>
-
-  <div id="step7" class="step">
-    <h2>Type of property?</h2>
-    <div class="option" onclick="nextStep()">Home</div>
-    <div class="option" onclick="nextStep()">Duplex/Triplex</div>
-    <div class="option" onclick="nextStep()">Mobile home</div>
-    <div class="option" onclick="nextStep()">Land</div>
-  </div>
-
-  <div id="step8" class="step">
-    <h2>Do you own any other real estate?</h2>
-    <div class="option" onclick="nextStep()">Yes</div>
-    <div class="option" onclick="nextStep()">No</div>
-  </div>
-
-  <div id="step9" class="step">
-    <h2>How many bedrooms?</h2>
-    <div class="option" onclick="nextStep()">1</div>
-    <div class="option" onclick="nextStep()">2</div>
-    <div class="option" onclick="nextStep()">3</div>
-    <div class="option" onclick="nextStep()">4</div>
-    <div class="option" onclick="nextStep()">5</div>
-    <div class="option" onclick="nextStep()">6+</div>
-  </div>
-
-  <div id="step10" class="step">
-    <h2>How many bathrooms?</h2>
-    <div class="option" onclick="finish()">1</div>
-    <div class="option" onclick="finish()">1.5</div>
-    <div class="option" onclick="finish()">2</div>
-    <div class="option" onclick="finish()">2.5</div>
-    <div class="option" onclick="finish()">3</div>
-    <div class="option" onclick="finish()">3.5</div>
-    <div class="option" onclick="finish()">4+</div>
-  </div>
-
-  <div id="disqualified" class="step">
-    <h2>Thanks for your interest</h2>
-    <p>Unfortunately, we are unable to assist with properties already listed. Have a great day!</p>
-  </div>
-
-  <div id="thankyou" class="step">
-    <h2>Thank you!</h2>
-    <p>Your responses have been received. Our team will follow up shortly.</p>
-  </div>
-
-  <script>
+<div class="step active" id="step1">
+<h2>Is this address correct?</h2>
+<p id="confirmed-address">Loading...</p>
+<button onclick="nextStep()">Yes, that's right</button>
+<button onclick="location.href='https://solvinghomesales.com'">Fix address</button>
+</div>
+<div class="step" id="step2">
+<h2>Why are you selling?</h2>
+<div class="option" onclick="nextStep()">Pre-foreclosure</div>
+<div class="option" onclick="nextStep()">Financial reasons</div>
+<div class="option" onclick="nextStep()">Sell &amp; Rent Instead</div>
+<div class="option" onclick="nextStep()">Sell Without Showing</div>
+<div class="option" onclick="nextStep()">Tired of Landlord</div>
+<div class="option" onclick="nextStep()">Retire</div>
+<div class="option" onclick="nextStep()">Emergency</div>
+<div class="option" onclick="nextStep()">Home is Vacant</div>
+<div class="option" onclick="nextStep()">Death in Family</div>
+<div class="option" onclick="nextStep()">Inherited</div>
+<div class="option" onclick="nextStep()">Move closer to family</div>
+<div class="option" onclick="nextStep()">Moving from USA</div>
+</div>
+<div class="step" id="step3">
+<h2>What's your timeline?</h2>
+<div class="option" onclick="nextStep()">2 weeks</div>
+<div class="option" onclick="nextStep()">1 month</div>
+<div class="option" onclick="nextStep()">2 months</div>
+<div class="option" onclick="nextStep()">3 months</div>
+<div class="option" onclick="nextStep()">4+ months</div>
+</div>
+<div class="step" id="step4">
+<h2>Are you the owner of the property, agent or investor?</h2>
+<div class="option" onclick="nextStep()">Owner</div>
+<div class="option" onclick="nextStep()">Agent</div>
+<div class="option" onclick="nextStep()">Investor</div>
+</div>
+<div class="step" id="step5">
+<h2>Is there currently a mortgage? If yes, how much do you owe?</h2>
+<div class="option" onclick="nextStep()">0-25k</div>
+<div class="option" onclick="nextStep()">25-50k</div>
+<div class="option" onclick="nextStep()">50-100k</div>
+<div class="option" onclick="nextStep()">100-150k</div>
+<div class="option" onclick="nextStep()">150-200k</div>
+<div class="option" onclick="nextStep()">200-250k</div>
+<div class="option" onclick="nextStep()">250-300k</div>
+<div class="option" onclick="nextStep()">300-350k</div>
+<div class="option" onclick="nextStep()">350-400k</div>
+<div class="option" onclick="nextStep()">No, nothing owed</div>
+</div>
+<div class="step" id="step6">
+<h2>Listed with Realtor OR Listed For Sale By Owner?</h2>
+<div class="option" onclick="disqualify()">Yes</div>
+<div class="option" onclick="nextStep()">No</div>
+</div>
+<div class="step" id="step7">
+<h2>Type of property?</h2>
+<div class="option" onclick="nextStep()">Home</div>
+<div class="option" onclick="nextStep()">Duplex/Triplex</div>
+<div class="option" onclick="nextStep()">Mobile home</div>
+<div class="option" onclick="nextStep()">Land</div>
+</div>
+<div class="step" id="step8">
+<h2>Do you own any other real estate?</h2>
+<div class="option" onclick="nextStep()">Yes</div>
+<div class="option" onclick="nextStep()">No</div>
+</div>
+<div class="step" id="step9">
+<h2>How many bedrooms?</h2>
+<div class="option" onclick="nextStep()">1</div>
+<div class="option" onclick="nextStep()">2</div>
+<div class="option" onclick="nextStep()">3</div>
+<div class="option" onclick="nextStep()">4</div>
+<div class="option" onclick="nextStep()">5</div>
+<div class="option" onclick="nextStep()">6+</div>
+</div>
+<div class="step" id="step10">
+<h2>How many bathrooms?</h2>
+<div class="option" onclick="finish()">1</div>
+<div class="option" onclick="finish()">1.5</div>
+<div class="option" onclick="finish()">2</div>
+<div class="option" onclick="finish()">2.5</div>
+<div class="option" onclick="finish()">3</div>
+<div class="option" onclick="finish()">3.5</div>
+<div class="option" onclick="finish()">4+</div>
+</div>
+<div class="step" id="disqualified">
+<h2>Thanks for your interest</h2>
+<p>Unfortunately, we are unable to assist with properties already listed. Have a great day!</p>
+</div>
+<div class="step" id="thankyou">
+<h2>Thank you!</h2>
+<p>Your responses have been received. Our team will follow up shortly.</p>
+</div>
+<script>
     let currentStep = 1;
 
     function nextStep() {
@@ -178,5 +166,49 @@
       el.innerText = address || "No address provided.";
     });
   </script>
-</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const steps = document.querySelectorAll(".step");
+  let currentStep = 0;
+  const nextBtn = document.getElementById("nextBtn");
+  const backBtn = document.getElementById("backBtn");
+
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.style.display = i === index ? "block" : "none";
+    });
+    if (!steps[index]) {
+      console.warn("Step not found:", index);
+    }
+  }
+
+  function nextStep() {
+    if (currentStep === 5) {
+      const listVal = document.querySelector('input[name="listing"]:checked');
+      if (listVal && listVal.value === "Yes") {
+        currentStep = 10;
+      } else {
+        currentStep++;
+      }
+    } else {
+      currentStep++;
+    }
+    if (currentStep >= steps.length) currentStep = steps.length - 1;
+    showStep(currentStep);
+  }
+
+  function prevStep() {
+    currentStep--;
+    if (currentStep < 0) currentStep = 0;
+    showStep(currentStep);
+  }
+
+  if (nextBtn && backBtn) {
+    nextBtn.addEventListener("click", nextStep);
+    backBtn.addEventListener("click", prevStep);
+  }
+
+  showStep(currentStep);
+});
+</script></body>
 </html>
