@@ -38,15 +38,21 @@
     .option:hover {
       border-color: #76ac22;
     }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
 
   <div id="step1" class="step active">
     <h2>Is this address correct?</h2>
-    <p id="confirmed-address">123 Main St, Denver, CO 80202</p>
+    <p id="confirmed-address">Loading...</p>
     <button onclick="nextStep()">Yes, that's right</button>
-    <button onclick="location.reload()">Fix address</button>
+    <button onclick="location.href='https://solvinghomesales.com'">Fix address</button>
   </div>
 
   <div id="step2" class="step">
@@ -101,22 +107,76 @@
     <div class="option" onclick="nextStep()">No</div>
   </div>
 
+  <div id="step7" class="step">
+    <h2>Type of property?</h2>
+    <div class="option" onclick="nextStep()">Home</div>
+    <div class="option" onclick="nextStep()">Duplex/Triplex</div>
+    <div class="option" onclick="nextStep()">Mobile home</div>
+    <div class="option" onclick="nextStep()">Land</div>
+  </div>
+
+  <div id="step8" class="step">
+    <h2>Do you own any other real estate?</h2>
+    <div class="option" onclick="nextStep()">Yes</div>
+    <div class="option" onclick="nextStep()">No</div>
+  </div>
+
+  <div id="step9" class="step">
+    <h2>How many bedrooms?</h2>
+    <div class="option" onclick="nextStep()">1</div>
+    <div class="option" onclick="nextStep()">2</div>
+    <div class="option" onclick="nextStep()">3</div>
+    <div class="option" onclick="nextStep()">4</div>
+    <div class="option" onclick="nextStep()">5</div>
+    <div class="option" onclick="nextStep()">6+</div>
+  </div>
+
+  <div id="step10" class="step">
+    <h2>How many bathrooms?</h2>
+    <div class="option" onclick="finish()">1</div>
+    <div class="option" onclick="finish()">1.5</div>
+    <div class="option" onclick="finish()">2</div>
+    <div class="option" onclick="finish()">2.5</div>
+    <div class="option" onclick="finish()">3</div>
+    <div class="option" onclick="finish()">3.5</div>
+    <div class="option" onclick="finish()">4+</div>
+  </div>
+
   <div id="disqualified" class="step">
     <h2>Thanks for your interest</h2>
     <p>Unfortunately, we are unable to assist with properties already listed. Have a great day!</p>
   </div>
 
+  <div id="thankyou" class="step">
+    <h2>Thank you!</h2>
+    <p>Your responses have been received. Our team will follow up shortly.</p>
+  </div>
+
   <script>
     let currentStep = 1;
+
     function nextStep() {
       document.getElementById('step' + currentStep).classList.remove('active');
       currentStep++;
       document.getElementById('step' + currentStep).classList.add('active');
     }
+
+    function finish() {
+      document.getElementById('step' + currentStep).classList.remove('active');
+      document.getElementById('thankyou').classList.add('active');
+    }
+
     function disqualify() {
       document.getElementById('step6').classList.remove('active');
       document.getElementById('disqualified').classList.add('active');
     }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const address = params.get("address");
+      const el = document.getElementById("confirmed-address");
+      el.innerText = address || "No address provided.";
+    });
   </script>
 </body>
 </html>
