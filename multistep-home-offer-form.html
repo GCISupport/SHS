@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Offer Survey</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .question {
+      margin-bottom: 40px;
+    }
+    .option {
+      display: block;
+      background: #1e1e1e;
+      color: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+    .option:hover {
+      background-color: #333;
+    }
+    .progress-bar {
+      height: 10px;
+      background-color: #444;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .progress {
+      height: 100%;
+      background-color: #4caf50;
+      width: 10%;
+    }
+    .hidden {
+      display: none;
+    }
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ffa500;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>In order for us to get you the TOP best cash offer, please fill out this quick survey</h2>
+    <p>All your data stays secure & confidential.</p>
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+
+    <form id="survey-form">
+      <div class="question" id="step-1">
+        <h3>Why are you selling? *</h3>
+        <label class="option"><input type="checkbox" name="reason" value="Pre-Foreclosure"/> Pre-Foreclosure</label>
+        <label class="option"><input type="checkbox" name="reason" value="Financial Reasons"/> Financial Reasons</label>
+        <label class="option"><input type="checkbox" name="reason" value="Sell & Rent Instead"/> Sell & Rent Instead</label>
+        <label class="option"><input type="checkbox" name="reason" value="Sell Without Showing"/> Sell Without Showing</label>
+        <label class="option"><input type="checkbox" name="reason" value="Tired of Landlord"/> Tired of Landlord</label>
+        <label class="option"><input type="checkbox" name="reason" value="Retire"/> Retire</label>
+        <label class="option"><input type="checkbox" name="reason" value="Emergency"/> Emergency</label>
+        <label class="option"><input type="checkbox" name="reason" value="Home is Vacant"/> Home is Vacant</label>
+        <label class="option"><input type="checkbox" name="reason" value="Death in Family"/> Death in Family</label>
+        <label class="option"><input type="checkbox" name="reason" value="Inherited"/> Inherited</label>
+        <label class="option"><input type="checkbox" name="reason" value="Move Closer to Family"/> Move Closer to Family</label>
+        <label class="option"><input type="checkbox" name="reason" value="Moving from USA"/> Moving from USA</label>
+        <div class="button-row">
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <div class="question hidden" id="step-2">
+        <h3>What’s your selling timeline? *</h3>
+        <label class="option"><input type="radio" name="timeline" value="2 weeks"/> 2 weeks</label>
+        <label class="option"><input type="radio" name="timeline" value="1 month"/> 1 month</label>
+        <label class="option"><input type="radio" name="timeline" value="2 month"/> 2 months</label>
+        <label class="option"><input type="radio" name="timeline" value="3 month"/> 3 months</label>
+        <label class="option"><input type="radio" name="timeline" value="4+ month"/> 4+ months</label>
+        <div class="button-row">
+          <button type="button" onclick="prevStep()">Back</button>
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- Additional steps will be added below this -->
+
+    </form>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    function nextStep() {
+      document.getElementById(`step-${currentStep}`).classList.add('hidden');
+      currentStep++;
+      const next = document.getElementById(`step-${currentStep}`);
+      if (next) next.classList.remove('hidden');
+      document.getElementById("progress").style.width = (currentStep * 10) + "%";
+    }
+    function prevStep() {
+      document.getElementById(`step-${currentStep}`).classList.add('hidden');
+      currentStep--;
+      const prev = document.getElementById(`step-${currentStep}`);
+      if (prev) prev.classList.remove('hidden');
+      document.getElementById("progress").style.width = (currentStep * 10) + "%";
+    }
+  </script>
+</body>
+</html>
