@@ -165,7 +165,32 @@
       const el = document.getElementById("confirmed-address");
       el.innerText = address || "No address provided.";
     });
-  </script>
+  
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const addr = urlParams.get("address");
+  const editInput = document.getElementById("edit-address");
+  if (editInput && addr) {
+    editInput.value = decodeURIComponent(addr);
+  }
+
+  const yesBtn = document.getElementById("confirmYes");
+  if (yesBtn) {
+    yesBtn.addEventListener("click", () => {
+      if (editInput && editInput.value.trim()) {
+        sessionStorage.setItem("finalAddress", editInput.value.trim());
+        nextStep();
+      }
+    });
+  }
+
+  // Optional: Keep values pre-filled across steps (preserving state)
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach((el) => {
+    el.addEventListener("change", () => {
+      sessionStorage.setItem(el.name, el.value);
+    });
+  });
+    </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const steps = document.querySelectorAll(".step");
