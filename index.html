@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,127 +6,116 @@
   <title>Home Offer Survey</title>
   <style>
     body {
-      background-color: #121212;
+      background: #111;
       color: white;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 2rem;
+      text-align: center;
     }
-    .form-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    .step {
+      display: none;
     }
-    h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
+    .active {
+      display: block;
     }
-    .question {
-      margin-bottom: 40px;
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
     }
     .option {
       display: block;
-      background: #1e1e1e;
-      color: white;
-      padding: 15px;
-      margin: 10px 0;
+      background: #222;
+      margin: 10px auto;
+      padding: 10px;
       border-radius: 6px;
-      border: 1px solid #333;
+      width: 300px;
       cursor: pointer;
+      border: 2px solid transparent;
     }
     .option:hover {
-      background-color: #333;
-    }
-    .progress-bar {
-      height: 10px;
-      background-color: #444;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 20px 0;
-    }
-    .progress {
-      height: 100%;
-      background-color: #4caf50;
-      width: 10%;
-    }
-    .hidden {
-      display: none;
-    }
-    .button-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #ffa500;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      border-color: #76ac22;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>In order for us to get you the TOP best cash offer, please fill out this quick survey</h2>
-    <p>All your data stays secure & confidential.</p>
-    <div class="progress-bar"><div class="progress" id="progress"></div></div>
 
-    <form id="survey-form">
-      <div class="question" id="step-1">
-        <h3>Why are you selling? *</h3>
-        <label class="option"><input type="checkbox" name="reason" value="Pre-Foreclosure"/> Pre-Foreclosure</label>
-        <label class="option"><input type="checkbox" name="reason" value="Financial Reasons"/> Financial Reasons</label>
-        <label class="option"><input type="checkbox" name="reason" value="Sell & Rent Instead"/> Sell & Rent Instead</label>
-        <label class="option"><input type="checkbox" name="reason" value="Sell Without Showing"/> Sell Without Showing</label>
-        <label class="option"><input type="checkbox" name="reason" value="Tired of Landlord"/> Tired of Landlord</label>
-        <label class="option"><input type="checkbox" name="reason" value="Retire"/> Retire</label>
-        <label class="option"><input type="checkbox" name="reason" value="Emergency"/> Emergency</label>
-        <label class="option"><input type="checkbox" name="reason" value="Home is Vacant"/> Home is Vacant</label>
-        <label class="option"><input type="checkbox" name="reason" value="Death in Family"/> Death in Family</label>
-        <label class="option"><input type="checkbox" name="reason" value="Inherited"/> Inherited</label>
-        <label class="option"><input type="checkbox" name="reason" value="Move Closer to Family"/> Move Closer to Family</label>
-        <label class="option"><input type="checkbox" name="reason" value="Moving from USA"/> Moving from USA</label>
-        <div class="button-row">
-          <button type="button" onclick="nextStep()">Next</button>
-        </div>
-      </div>
+  <div id="step1" class="step active">
+    <h2>Is this address correct?</h2>
+    <p id="confirmed-address">123 Main St, Denver, CO 80202</p>
+    <button onclick="nextStep()">Yes, that's right</button>
+    <button onclick="location.reload()">Fix address</button>
+  </div>
 
-      <div class="question hidden" id="step-2">
-        <h3>What’s your selling timeline? *</h3>
-        <label class="option"><input type="radio" name="timeline" value="2 weeks"/> 2 weeks</label>
-        <label class="option"><input type="radio" name="timeline" value="1 month"/> 1 month</label>
-        <label class="option"><input type="radio" name="timeline" value="2 month"/> 2 months</label>
-        <label class="option"><input type="radio" name="timeline" value="3 month"/> 3 months</label>
-        <label class="option"><input type="radio" name="timeline" value="4+ month"/> 4+ months</label>
-        <div class="button-row">
-          <button type="button" onclick="prevStep()">Back</button>
-          <button type="button" onclick="nextStep()">Next</button>
-        </div>
-      </div>
+  <div id="step2" class="step">
+    <h2>Why are you selling?</h2>
+    <div class="option" onclick="nextStep()">Pre-foreclosure</div>
+    <div class="option" onclick="nextStep()">Financial reasons</div>
+    <div class="option" onclick="nextStep()">Sell & Rent Instead</div>
+    <div class="option" onclick="nextStep()">Sell Without Showing</div>
+    <div class="option" onclick="nextStep()">Tired of Landlord</div>
+    <div class="option" onclick="nextStep()">Retire</div>
+    <div class="option" onclick="nextStep()">Emergency</div>
+    <div class="option" onclick="nextStep()">Home is Vacant</div>
+    <div class="option" onclick="nextStep()">Death in Family</div>
+    <div class="option" onclick="nextStep()">Inherited</div>
+    <div class="option" onclick="nextStep()">Move closer to family</div>
+    <div class="option" onclick="nextStep()">Moving from USA</div>
+  </div>
 
-      <!-- Additional steps will be added below this -->
+  <div id="step3" class="step">
+    <h2>What's your timeline?</h2>
+    <div class="option" onclick="nextStep()">2 weeks</div>
+    <div class="option" onclick="nextStep()">1 month</div>
+    <div class="option" onclick="nextStep()">2 months</div>
+    <div class="option" onclick="nextStep()">3 months</div>
+    <div class="option" onclick="nextStep()">4+ months</div>
+  </div>
 
-    </form>
+  <div id="step4" class="step">
+    <h2>Are you the owner of the property, agent or investor?</h2>
+    <div class="option" onclick="nextStep()">Owner</div>
+    <div class="option" onclick="nextStep()">Agent</div>
+    <div class="option" onclick="nextStep()">Investor</div>
+  </div>
+
+  <div id="step5" class="step">
+    <h2>Is there currently a mortgage? If yes, how much do you owe?</h2>
+    <div class="option" onclick="nextStep()">0-25k</div>
+    <div class="option" onclick="nextStep()">25-50k</div>
+    <div class="option" onclick="nextStep()">50-100k</div>
+    <div class="option" onclick="nextStep()">100-150k</div>
+    <div class="option" onclick="nextStep()">150-200k</div>
+    <div class="option" onclick="nextStep()">200-250k</div>
+    <div class="option" onclick="nextStep()">250-300k</div>
+    <div class="option" onclick="nextStep()">300-350k</div>
+    <div class="option" onclick="nextStep()">350-400k</div>
+    <div class="option" onclick="nextStep()">No, nothing owed</div>
+  </div>
+
+  <div id="step6" class="step">
+    <h2>Listed with Realtor OR Listed For Sale By Owner?</h2>
+    <div class="option" onclick="disqualify()">Yes</div>
+    <div class="option" onclick="nextStep()">No</div>
+  </div>
+
+  <div id="disqualified" class="step">
+    <h2>Thanks for your interest</h2>
+    <p>Unfortunately, we are unable to assist with properties already listed. Have a great day!</p>
   </div>
 
   <script>
     let currentStep = 1;
     function nextStep() {
-      document.getElementById(`step-${currentStep}`).classList.add('hidden');
+      document.getElementById('step' + currentStep).classList.remove('active');
       currentStep++;
-      const next = document.getElementById(`step-${currentStep}`);
-      if (next) next.classList.remove('hidden');
-      document.getElementById("progress").style.width = (currentStep * 10) + "%";
+      document.getElementById('step' + currentStep).classList.add('active');
     }
-    function prevStep() {
-      document.getElementById(`step-${currentStep}`).classList.add('hidden');
-      currentStep--;
-      const prev = document.getElementById(`step-${currentStep}`);
-      if (prev) prev.classList.remove('hidden');
-      document.getElementById("progress").style.width = (currentStep * 10) + "%";
+    function disqualify() {
+      document.getElementById('step6').classList.remove('active');
+      document.getElementById('disqualified').classList.add('active');
     }
   </script>
 </body>
