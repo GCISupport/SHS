@@ -13,6 +13,17 @@
       margin: 0;
       padding: 0;
     }
+    .header-text {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+      padding: 0 20px;
+    }
+    .subtitle {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
     .step {
       display: none;
       padding: 20px;
@@ -44,10 +55,10 @@
     }
     .option {
       display: block;
-      background: #222;
+      background: #333;
       margin: 10px auto;
       padding: 15px;
-      border-radius: 6px;
+      border-radius: 8px;
       width: 300px;
       max-width: 90%;
       cursor: pointer;
@@ -58,7 +69,7 @@
     }
     .option:hover {
       border-color: #76ac22;
-      background: #333;
+      background: #444;
     }
     .option.selected {
       background-color: orange;
@@ -78,7 +89,7 @@
     }
     .progress-fill {
       height: 100%;
-      background-color: orange;
+      background-color: #76ac22;
       transition: width 0.3s ease;
     }
     .error {
@@ -92,15 +103,18 @@
       color: #ffd43b;
     }
     input[type="email"], input[type="tel"], input[type="text"] {
-      padding: 10px;
-      margin: 10px;
+      padding: 12px;
+      margin: 10px 0;
       font-size: 16px;
       border: 1px solid #555;
       border-radius: 4px;
-      background-color: #333;
-      color: white;
+      background-color: white;
+      color: #333;
       width: 300px;
       max-width: 90%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     .contact-form {
       text-align: left;
@@ -109,7 +123,11 @@
     }
     .contact-form label {
       display: block;
-      margin: 10px 0 5px 0;
+      margin: 15px 0 5px 0;
+      font-weight: bold;
+    }
+    .required {
+      color: red;
     }
     .disqualified {
       color: #ff6b6b;
@@ -119,16 +137,56 @@
       color: #999;
       margin-bottom: 10px;
     }
+    .consent-container {
+      margin: 20px 0;
+      text-align: left;
+    }
+    .consent-container input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+    .submit-button {
+      background-color: orange;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 15px 30px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .thank-you-content {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .thank-you-content h2 {
+      color: orange;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .phone-info {
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .area-code {
+      color: orange;
+      font-weight: bold;
+      font-size: 24px;
+    }
   </style>
 </head>
 <body>
+
+  <div class="header-text">In order for us to get you the TOP best cash offer, please fill out this quick survey</div>
+  <div class="subtitle">All your data stays secure & confidential.</div>
 
   <div class="progress-bar">
     <div class="progress-fill" id="progress"></div>
   </div>
 
   <div id="step-1" class="step active">
-    <div class="step-counter">Step 1 of 12</div>
+    <div class="step-counter">Step 1 of 18</div>
     <h2>Is this address correct?</h2>
     <p id="confirmed-address" class="loading">Loading address...</p>
     <div class="button-group">
@@ -138,7 +196,7 @@
   </div>
 
   <div id="step-2" class="step">
-    <div class="step-counter">Step 2 of 12</div>
+    <div class="step-counter">Step 2 of 18</div>
     <h2>Why are you selling?</h2>
     <div class="option" onclick="selectReason('Pre-foreclosure')">Pre-foreclosure</div>
     <div class="option" onclick="selectReason('Financial reasons')">Financial reasons</div>
@@ -156,7 +214,7 @@
   </div>
 
   <div id="step-3" class="step">
-    <div class="step-counter">Step 3 of 12</div>
+    <div class="step-counter">Step 3 of 18</div>
     <h2>What's your timeline to sell?</h2>
     <div class="option" onclick="selectTimeline('2 weeks')">2 weeks</div>
     <div class="option" onclick="selectTimeline('1 month')">1 month</div>
@@ -167,7 +225,7 @@
   </div>
 
   <div id="step-4" class="step">
-    <div class="step-counter">Step 4 of 12</div>
+    <div class="step-counter">Step 4 of 18</div>
     <h2>Are you the owner of the property, agent or investor?</h2>
     <div class="option" onclick="selectOwnerType('Owner')">Owner</div>
     <div class="option" onclick="selectOwnerType('Agent')">Agent</div>
@@ -176,7 +234,7 @@
   </div>
 
   <div id="step-5" class="step">
-    <div class="step-counter">Step 5 of 12</div>
+    <div class="step-counter">Step 5 of 18</div>
     <h2>Is there currently a mortgage? If yes, how much do you owe?</h2>
     <div class="option" onclick="selectMortgage('0-25k')">0-25k</div>
     <div class="option" onclick="selectMortgage('25-50k')">25-50k</div>
@@ -192,7 +250,7 @@
   </div>
 
   <div id="step-6" class="step">
-    <div class="step-counter">Step 6 of 12</div>
+    <div class="step-counter">Step 6 of 18</div>
     <h2>Listed with Realtor OR Listed For Sale By Owner?</h2>
     <div class="option" onclick="disqualify()">Yes</div>
     <div class="option" onclick="selectListed('No')">No</div>
@@ -200,7 +258,7 @@
   </div>
 
   <div id="step-7" class="step">
-    <div class="step-counter">Step 7 of 12</div>
+    <div class="step-counter">Step 7 of 18</div>
     <h2>Type of property?</h2>
     <div class="option" onclick="selectPropertyType('Home')">Home</div>
     <div class="option" onclick="selectPropertyType('Duplex/Triplex')">Duplex/Triplex</div>
@@ -210,7 +268,7 @@
   </div>
 
   <div id="step-8" class="step">
-    <div class="step-counter">Step 8 of 12</div>
+    <div class="step-counter">Step 8 of 18</div>
     <h2>Do you own any other real estate?</h2>
     <div class="option" onclick="selectOtherRealEstate('Yes')">Yes</div>
     <div class="option" onclick="selectOtherRealEstate('No')">No</div>
@@ -218,7 +276,7 @@
   </div>
 
   <div id="step-9" class="step">
-    <div class="step-counter">Step 9 of 12</div>
+    <div class="step-counter">Step 9 of 18</div>
     <h2>How many bedrooms?</h2>
     <div class="option" onclick="selectBedrooms('1')">1</div>
     <div class="option" onclick="selectBedrooms('2')">2</div>
@@ -230,7 +288,7 @@
   </div>
 
   <div id="step-10" class="step">
-    <div class="step-counter">Step 10 of 12</div>
+    <div class="step-counter">Step 10 of 18</div>
     <h2>How many bathrooms?</h2>
     <div class="option" onclick="selectBathrooms('1')">1</div>
     <div class="option" onclick="selectBathrooms('1.5')">1.5</div>
@@ -243,41 +301,114 @@
   </div>
 
   <div id="step-11" class="step">
-    <div class="step-counter">Step 11 of 12</div>
-    <h2>Contact Information</h2>
-    <p>We'll need your contact details to send you a personalized offer.</p>
+    <div class="step-counter">Step 11 of 18</div>
+    <h2>When did bathrooms have FULL UPDATE (i.e., not a new toilet or shower head) <span class="required">*</span></h2>
+    <div class="option" onclick="selectBathroomUpdate('Within 5yr')">Within 5yr</div>
+    <div class="option" onclick="selectBathroomUpdate('10yr')">10yr</div>
+    <div class="option" onclick="selectBathroomUpdate('20yr')">20yr</div>
+    <div class="option" onclick="selectBathroomUpdate('There have not been any updates')">There have not been any updates</div>
+    <div class="option" onclick="selectBathroomUpdate('As is since purchased')">As is since purchased</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-12" class="step">
+    <div class="step-counter">Step 12 of 18</div>
+    <h2>When did kitchen have FULL UPDATE (i.e., not just cabinets) <span class="required">*</span></h2>
+    <div class="option" onclick="selectKitchenUpdate('Within 5yr')">Within 5yr</div>
+    <div class="option" onclick="selectKitchenUpdate('10yr')">10yr</div>
+    <div class="option" onclick="selectKitchenUpdate('20yr')">20yr</div>
+    <div class="option" onclick="selectKitchenUpdate('There have not been any updates')">There have not been any updates</div>
+    <div class="option" onclick="selectKitchenUpdate('As is since purchased')">As is since purchased</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-13" class="step">
+    <div class="step-counter">Step 13 of 18</div>
+    <h2>How old is the roof? <span class="required">*</span></h2>
+    <div class="option" onclick="selectRoofAge('5yr')">5yr</div>
+    <div class="option" onclick="selectRoofAge('10yr')">10yr</div>
+    <div class="option" onclick="selectRoofAge('20yr')">20yr</div>
+    <div class="option" onclick="selectRoofAge('There have not been any updates')">There have not been any updates</div>
+    <div class="option" onclick="selectRoofAge('As is since purchased')">As is since purchased</div>
+    <div class="option" onclick="selectRoofAge('I don\'t know')">I don't know</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-14" class="step">
+    <div class="step-counter">Step 14 of 18</div>
+    <h2>How old is hot water heater? <span class="required">*</span></h2>
+    <div class="option" onclick="selectWaterHeaterAge('1-2yr')">1-2yr</div>
+    <div class="option" onclick="selectWaterHeaterAge('5yr')">5yr</div>
+    <div class="option" onclick="selectWaterHeaterAge('10yr')">10yr</div>
+    <div class="option" onclick="selectWaterHeaterAge('20yr')">20yr</div>
+    <div class="option" onclick="selectWaterHeaterAge('I don\'t know')">I don't know</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-15" class="step">
+    <div class="step-counter">Step 15 of 18</div>
+    <h2>How old is the heating/cooling system? <span class="required">*</span></h2>
+    <div class="option" onclick="selectHVACAge('5yr')">5yr</div>
+    <div class="option" onclick="selectHVACAge('10yr')">10yr</div>
+    <div class="option" onclick="selectHVACAge('15yr')">15yr</div>
+    <div class="option" onclick="selectHVACAge('20yr')">20yr</div>
+    <div class="option" onclick="selectHVACAge('I don\'t know')">I don't know</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-16" class="step">
+    <div class="step-counter">Step 16 of 18</div>
+    <h2>Garage</h2>
+    <div class="option" onclick="selectGarage('Carport')">Carport</div>
+    <div class="option" onclick="selectGarage('1 car')">1 car</div>
+    <div class="option" onclick="selectGarage('2 car')">2 car</div>
+    <div class="option" onclick="selectGarage('3 car')">3 car</div>
+    <div class="option" onclick="selectGarage('I don\'t know')">I don't know</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-17" class="step">
+    <div class="step-counter">Step 17 of 18</div>
     <div class="contact-form">
-      <label for="name">Full Name *</label>
-      <input type="text" id="name" required>
+      <label for="firstName">First Name <span class="required">*</span></label>
+      <input type="text" id="firstName" placeholder="First Name *" required>
       
-      <label for="email">Email Address *</label>
-      <input type="email" id="email" required>
+      <label for="lastName">Last Name <span class="required">*</span></label>
+      <input type="text" id="lastName" placeholder="Last Name *" required>
       
-      <label for="phone">Phone Number *</label>
-      <input type="tel" id="phone" required>
+      <label for="phone">Your Best Phone Number <span class="required">*</span></label>
+      <input type="tel" id="phone" placeholder="Your Best Phone Number *" required>
+      
+      <label for="email">Email <span class="required">*</span></label>
+      <input type="email" id="email" placeholder="Email" required>
+      
+      <div class="consent-container">
+        <label>
+          <input type="checkbox" id="consent" required>
+          I consent to be contacted from communication methods above <span class="required">*</span>
+        </label>
+      </div>
     </div>
     <div id="contact-error" class="error"></div>
     <div class="button-group">
-      <button class="primary" onclick="submitForm()">Get My Offer</button>
+      <button class="submit-button" onclick="submitForm()">Get My Fair Cash Offer Now</button>
       <button class="back-button" onclick="prevStep()">Back</button>
     </div>
   </div>
 
-  <div id="step-12" class="step">
-    <div class="step-counter">Step 12 of 12</div>
-    <h2>Thank You!</h2>
+  <div id="step-18" class="step">
+    <div class="step-counter">Step 18 of 18</div>
     <div id="submission-status">
       <p class="loading">Submitting your information...</p>
     </div>
     <div id="success-message" style="display: none;">
-      <p class="success">✓ Your information has been submitted successfully!</p>
-      <p>We'll contact you within 24 hours with a personalized offer for your property.</p>
-      <p><strong>Next steps:</strong></p>
-      <ul style="text-align: left; max-width: 400px; margin: 20px auto;">
-        <li>Review your property details</li>
-        <li>Schedule a brief phone consultation</li>
-        <li>Receive your cash offer</li>
-      </ul>
+      <div class="thank-you-content">
+        <h2>You will receive a phone call in the next few minutes from us!</h2>
+        <div class="phone-info">
+          <p>It will come from a <span class="area-code">480 or 623 Area Code!</span></p>
+        </div>
+        <p><strong>Please be ready to answer, or let us know best time to reach you if you can't answer. Thank you!</strong></p>
+      </div>
     </div>
     <div id="error-message" style="display: none;">
       <p class="error">There was an issue submitting your form. Please try again or contact us directly.</p>
@@ -293,7 +424,7 @@
 
   <script>
     let currentStep = 1;
-    const totalSteps = 12;
+    const totalSteps = 18;
     
     // Form data storage
     const formData = {
@@ -307,9 +438,17 @@
       otherRealEstate: '',
       bedrooms: '',
       bathrooms: '',
-      name: '',
+      bathroomUpdate: '',
+      kitchenUpdate: '',
+      roofAge: '',
+      waterHeaterAge: '',
+      hvacAge: '',
+      garage: '',
+      firstName: '',
+      lastName: '',
+      phone: '',
       email: '',
-      phone: ''
+      consent: false
     };
 
     function updateProgress() {
@@ -404,24 +543,55 @@
       selectWithFeedback(10, bathrooms, 'bathrooms');
     }
 
+    function selectBathroomUpdate(update) {
+      selectWithFeedback(11, update, 'bathroomUpdate');
+    }
+
+    function selectKitchenUpdate(update) {
+      selectWithFeedback(12, update, 'kitchenUpdate');
+    }
+
+    function selectRoofAge(age) {
+      selectWithFeedback(13, age, 'roofAge');
+    }
+
+    function selectWaterHeaterAge(age) {
+      selectWithFeedback(14, age, 'waterHeaterAge');
+    }
+
+    function selectHVACAge(age) {
+      selectWithFeedback(15, age, 'hvacAge');
+    }
+
+    function selectGarage(garage) {
+      selectWithFeedback(16, garage, 'garage');
+    }
+
     function disqualify() {
       formData.listed = 'Yes';
       showStep('disqualified');
     }
 
     function validateContactForm() {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
       const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const consent = document.getElementById('consent').checked;
       const errorDiv = document.getElementById('contact-error');
       
-      if (!name || !email || !phone) {
+      if (!firstName || !lastName || !phone || !email) {
         errorDiv.textContent = 'Please fill in all required fields.';
         return false;
       }
       
       if (!email.includes('@')) {
         errorDiv.textContent = 'Please enter a valid email address.';
+        return false;
+      }
+      
+      if (!consent) {
+        errorDiv.textContent = 'Please consent to be contacted to proceed.';
         return false;
       }
       
@@ -435,9 +605,11 @@
       }
       
       // Collect contact form data
-      formData.name = document.getElementById('name').value.trim();
-      formData.email = document.getElementById('email').value.trim();
+      formData.firstName = document.getElementById('firstName').value.trim();
+      formData.lastName = document.getElementById('lastName').value.trim();
       formData.phone = document.getElementById('phone').value.trim();
+      formData.email = document.getElementById('email').value.trim();
+      formData.consent = document.getElementById('consent').checked;
       
       // Show submission step
       nextStep();
@@ -460,9 +632,17 @@
             other_real_estate: formData.otherRealEstate,
             bedrooms: formData.bedrooms,
             bathrooms: formData.bathrooms,
-            name: formData.name,
-            email: formData.email,
+            bathroom_update: formData.bathroomUpdate,
+            kitchen_update: formData.kitchenUpdate,
+            roof_age: formData.roofAge,
+            water_heater_age: formData.waterHeaterAge,
+            hvac_age: formData.hvacAge,
+            garage: formData.garage,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
             phone: formData.phone,
+            email: formData.email,
+            consent: formData.consent,
             source: 'Home Offer Survey - Complete',
             timestamp: new Date().toISOString()
           })
