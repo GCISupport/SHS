@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,8 @@
     .step {
       display: none;
       padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .step.active {
       display: block;
@@ -31,66 +32,309 @@
       cursor: pointer;
       border: none;
       border-radius: 4px;
+      min-width: 120px;
     }
-    .primary { background-color: orange; color: black; }
-    .secondary { background-color: #333; color: white; }
+    .primary { 
+      background-color: orange; 
+      color: black; 
+    }
+    .secondary { 
+      background-color: #333; 
+      color: white; 
+    }
+    .option {
+      display: block;
+      background: #222;
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 6px;
+      width: 300px;
+      max-width: 90%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .option:hover {
+      border-color: #76ac22;
+      background: #333;
+    }
+    .option.selected {
+      background-color: orange;
+      color: black;
+      border-color: orange;
+    }
+    .back-button {
+      background-color: #666;
+      color: white;
+      margin-top: 20px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background-color: #333;
+      margin-bottom: 20px;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: orange;
+      transition: width 0.3s ease;
+    }
+    .error {
+      color: #ff6b6b;
+      margin-top: 10px;
+    }
+    .success {
+      color: #51cf66;
+    }
+    .loading {
+      color: #ffd43b;
+    }
+    input[type="email"], input[type="tel"], input[type="text"] {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #333;
+      color: white;
+      width: 300px;
+      max-width: 90%;
+    }
+    .contact-form {
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .contact-form label {
+      display: block;
+      margin: 10px 0 5px 0;
+    }
+    .disqualified {
+      color: #ff6b6b;
+    }
+    .step-counter {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
 
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
   <div id="step-1" class="step active">
+    <div class="step-counter">Step 1 of 12</div>
     <h2>Is this address correct?</h2>
-    <p id="confirmed-address">Loading...</p>
+    <p id="confirmed-address" class="loading">Loading address...</p>
     <div class="button-group">
-      <button class="primary" onclick="nextStep()">Yes, that's right</button>
+      <button class="primary" onclick="confirmAddress()">Yes, that's right</button>
       <button class="secondary" onclick="window.location.href='https://www.solvinghomesales.com/home-owner-questionnaire-lander'">Fix address</button>
     </div>
   </div>
 
   <div id="step-2" class="step">
+    <div class="step-counter">Step 2 of 12</div>
     <h2>Why are you selling?</h2>
-    <div class="button-group">
-      <button onclick="nextStep()">Pre-foreclosure</button>
-      <button onclick="nextStep()">Financial reasons</button>
-      <button onclick="nextStep()">Sell & Rent Instead</button>
-      <button onclick="nextStep()">Sell Without Showing</button>
-      <button onclick="nextStep()">Tired of Landlord</button>
-      <button onclick="nextStep()">Retire</button>
-      <button onclick="nextStep()">Emergency</button>
-      <button onclick="nextStep()">Home is Vacant</button>
-      <button onclick="nextStep()">Death Family</button>
-      <button onclick="nextStep()">Inherited</button>
-      <button onclick="nextStep()">Move closer to family</button>
-      <button onclick="nextStep()">Moving from USA</button>
-    </div>
-    <button onclick="prevStep()">Back</button>
+    <div class="option" onclick="selectReason('Pre-foreclosure')">Pre-foreclosure</div>
+    <div class="option" onclick="selectReason('Financial reasons')">Financial reasons</div>
+    <div class="option" onclick="selectReason('Sell & Rent Instead')">Sell & Rent Instead</div>
+    <div class="option" onclick="selectReason('Sell Without Showing')">Sell Without Showing</div>
+    <div class="option" onclick="selectReason('Tired of Landlord')">Tired of Landlord</div>
+    <div class="option" onclick="selectReason('Retire')">Retire</div>
+    <div class="option" onclick="selectReason('Emergency')">Emergency</div>
+    <div class="option" onclick="selectReason('Home is Vacant')">Home is Vacant</div>
+    <div class="option" onclick="selectReason('Death in Family')">Death in Family</div>
+    <div class="option" onclick="selectReason('Inherited')">Inherited</div>
+    <div class="option" onclick="selectReason('Move closer to family')">Move closer to family</div>
+    <div class="option" onclick="selectReason('Moving from USA')">Moving from USA</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
   </div>
 
   <div id="step-3" class="step">
-    <h2>What’s your timeline to sell?</h2>
-    <div class="button-group">
-      <button onclick="nextStep()">2 weeks</button>
-      <button onclick="nextStep()">1 month</button>
-      <button onclick="nextStep()">2 month</button>
-      <button onclick="nextStep()">3 month</button>
-      <button onclick="nextStep()">4+ month</button>
+    <div class="step-counter">Step 3 of 12</div>
+    <h2>What's your timeline to sell?</h2>
+    <div class="option" onclick="selectTimeline('2 weeks')">2 weeks</div>
+    <div class="option" onclick="selectTimeline('1 month')">1 month</div>
+    <div class="option" onclick="selectTimeline('2 months')">2 months</div>
+    <div class="option" onclick="selectTimeline('3 months')">3 months</div>
+    <div class="option" onclick="selectTimeline('4+ months')">4+ months</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-4" class="step">
+    <div class="step-counter">Step 4 of 12</div>
+    <h2>Are you the owner of the property, agent or investor?</h2>
+    <div class="option" onclick="selectOwnerType('Owner')">Owner</div>
+    <div class="option" onclick="selectOwnerType('Agent')">Agent</div>
+    <div class="option" onclick="selectOwnerType('Investor')">Investor</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-5" class="step">
+    <div class="step-counter">Step 5 of 12</div>
+    <h2>Is there currently a mortgage? If yes, how much do you owe?</h2>
+    <div class="option" onclick="selectMortgage('0-25k')">0-25k</div>
+    <div class="option" onclick="selectMortgage('25-50k')">25-50k</div>
+    <div class="option" onclick="selectMortgage('50-100k')">50-100k</div>
+    <div class="option" onclick="selectMortgage('100-150k')">100-150k</div>
+    <div class="option" onclick="selectMortgage('150-200k')">150-200k</div>
+    <div class="option" onclick="selectMortgage('200-250k')">200-250k</div>
+    <div class="option" onclick="selectMortgage('250-300k')">250-300k</div>
+    <div class="option" onclick="selectMortgage('300-350k')">300-350k</div>
+    <div class="option" onclick="selectMortgage('350-400k')">350-400k</div>
+    <div class="option" onclick="selectMortgage('No, nothing owed')">No, nothing owed</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-6" class="step">
+    <div class="step-counter">Step 6 of 12</div>
+    <h2>Listed with Realtor OR Listed For Sale By Owner?</h2>
+    <div class="option" onclick="disqualify()">Yes</div>
+    <div class="option" onclick="selectListed('No')">No</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-7" class="step">
+    <div class="step-counter">Step 7 of 12</div>
+    <h2>Type of property?</h2>
+    <div class="option" onclick="selectPropertyType('Home')">Home</div>
+    <div class="option" onclick="selectPropertyType('Duplex/Triplex')">Duplex/Triplex</div>
+    <div class="option" onclick="selectPropertyType('Mobile home')">Mobile home</div>
+    <div class="option" onclick="selectPropertyType('Land')">Land</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-8" class="step">
+    <div class="step-counter">Step 8 of 12</div>
+    <h2>Do you own any other real estate?</h2>
+    <div class="option" onclick="selectOtherRealEstate('Yes')">Yes</div>
+    <div class="option" onclick="selectOtherRealEstate('No')">No</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-9" class="step">
+    <div class="step-counter">Step 9 of 12</div>
+    <h2>How many bedrooms?</h2>
+    <div class="option" onclick="selectBedrooms('1')">1</div>
+    <div class="option" onclick="selectBedrooms('2')">2</div>
+    <div class="option" onclick="selectBedrooms('3')">3</div>
+    <div class="option" onclick="selectBedrooms('4')">4</div>
+    <div class="option" onclick="selectBedrooms('5')">5</div>
+    <div class="option" onclick="selectBedrooms('6+')">6+</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-10" class="step">
+    <div class="step-counter">Step 10 of 12</div>
+    <h2>How many bathrooms?</h2>
+    <div class="option" onclick="selectBathrooms('1')">1</div>
+    <div class="option" onclick="selectBathrooms('1.5')">1.5</div>
+    <div class="option" onclick="selectBathrooms('2')">2</div>
+    <div class="option" onclick="selectBathrooms('2.5')">2.5</div>
+    <div class="option" onclick="selectBathrooms('3')">3</div>
+    <div class="option" onclick="selectBathrooms('3.5')">3.5</div>
+    <div class="option" onclick="selectBathrooms('4+')">4+</div>
+    <button class="back-button" onclick="prevStep()">Back</button>
+  </div>
+
+  <div id="step-11" class="step">
+    <div class="step-counter">Step 11 of 12</div>
+    <h2>Contact Information</h2>
+    <p>We'll need your contact details to send you a personalized offer.</p>
+    <div class="contact-form">
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" required>
+      
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" required>
+      
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" required>
     </div>
-    <button onclick="prevStep()">Back</button>
+    <div id="contact-error" class="error"></div>
+    <div class="button-group">
+      <button class="primary" onclick="submitForm()">Get My Offer</button>
+      <button class="back-button" onclick="prevStep()">Back</button>
+    </div>
+  </div>
+
+  <div id="step-12" class="step">
+    <div class="step-counter">Step 12 of 12</div>
+    <h2>Thank You!</h2>
+    <div id="submission-status">
+      <p class="loading">Submitting your information...</p>
+    </div>
+    <div id="success-message" style="display: none;">
+      <p class="success">✓ Your information has been submitted successfully!</p>
+      <p>We'll contact you within 24 hours with a personalized offer for your property.</p>
+      <p><strong>Next steps:</strong></p>
+      <ul style="text-align: left; max-width: 400px; margin: 20px auto;">
+        <li>Review your property details</li>
+        <li>Schedule a brief phone consultation</li>
+        <li>Receive your cash offer</li>
+      </ul>
+    </div>
+    <div id="error-message" style="display: none;">
+      <p class="error">There was an issue submitting your form. Please try again or contact us directly.</p>
+      <button class="secondary" onclick="submitForm()">Try Again</button>
+    </div>
+  </div>
+
+  <div id="disqualified" class="step">
+    <h2 class="disqualified">Thanks for your interest</h2>
+    <p>Unfortunately, we are unable to assist with properties already listed. Have a great day!</p>
+    <button class="secondary" onclick="window.location.href='https://www.solvinghomesales.com'">Return to Homepage</button>
   </div>
 
   <script>
     let currentStep = 1;
+    const totalSteps = 12;
+    
+    // Form data storage
+    const formData = {
+      address: '',
+      reason: '',
+      timeline: '',
+      ownerType: '',
+      mortgage: '',
+      listed: '',
+      propertyType: '',
+      otherRealEstate: '',
+      bedrooms: '',
+      bathrooms: '',
+      name: '',
+      email: '',
+      phone: ''
+    };
+
+    function updateProgress() {
+      const progress = (currentStep / totalSteps) * 100;
+      document.getElementById('progress').style.width = progress + '%';
+    }
 
     function showStep(step) {
       document.querySelectorAll('.step').forEach((el, i) => {
         el.classList.remove('active');
-        if (i === step - 1) el.classList.add('active');
       });
+      
+      if (step === 'disqualified') {
+        document.getElementById('disqualified').classList.add('active');
+      } else {
+        document.getElementById('step-' + step).classList.add('active');
+      }
+      updateProgress();
     }
 
     function nextStep() {
-      currentStep++;
-      showStep(currentStep);
+      if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+      }
     }
 
     function prevStep() {
@@ -100,12 +344,159 @@
       }
     }
 
+    function confirmAddress() {
+      const addressElement = document.getElementById('confirmed-address');
+      formData.address = addressElement.textContent;
+      nextStep();
+    }
+
+    function selectWithFeedback(stepId, value, dataKey) {
+      // Remove previous selection
+      document.querySelectorAll('#step-' + stepId + ' .option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      // Add selection to clicked option
+      event.target.classList.add('selected');
+      
+      // Store data
+      formData[dataKey] = value;
+      
+      // Auto-advance after short delay
+      setTimeout(() => {
+        nextStep();
+      }, 500);
+    }
+
+    function selectReason(reason) {
+      selectWithFeedback(2, reason, 'reason');
+    }
+
+    function selectTimeline(timeline) {
+      selectWithFeedback(3, timeline, 'timeline');
+    }
+
+    function selectOwnerType(type) {
+      selectWithFeedback(4, type, 'ownerType');
+    }
+
+    function selectMortgage(amount) {
+      selectWithFeedback(5, amount, 'mortgage');
+    }
+
+    function selectListed(listed) {
+      selectWithFeedback(6, listed, 'listed');
+    }
+
+    function selectPropertyType(type) {
+      selectWithFeedback(7, type, 'propertyType');
+    }
+
+    function selectOtherRealEstate(hasOther) {
+      selectWithFeedback(8, hasOther, 'otherRealEstate');
+    }
+
+    function selectBedrooms(bedrooms) {
+      selectWithFeedback(9, bedrooms, 'bedrooms');
+    }
+
+    function selectBathrooms(bathrooms) {
+      selectWithFeedback(10, bathrooms, 'bathrooms');
+    }
+
+    function disqualify() {
+      formData.listed = 'Yes';
+      showStep('disqualified');
+    }
+
+    function validateContactForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const errorDiv = document.getElementById('contact-error');
+      
+      if (!name || !email || !phone) {
+        errorDiv.textContent = 'Please fill in all required fields.';
+        return false;
+      }
+      
+      if (!email.includes('@')) {
+        errorDiv.textContent = 'Please enter a valid email address.';
+        return false;
+      }
+      
+      errorDiv.textContent = '';
+      return true;
+    }
+
+    async function submitForm() {
+      if (!validateContactForm()) {
+        return;
+      }
+      
+      // Collect contact form data
+      formData.name = document.getElementById('name').value.trim();
+      formData.email = document.getElementById('email').value.trim();
+      formData.phone = document.getElementById('phone').value.trim();
+      
+      // Show submission step
+      nextStep();
+      
+      try {
+        // Using Formspree as an example - replace with your preferred service
+        const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            address: formData.address,
+            selling_reason: formData.reason,
+            timeline: formData.timeline,
+            owner_type: formData.ownerType,
+            mortgage_amount: formData.mortgage,
+            currently_listed: formData.listed,
+            property_type: formData.propertyType,
+            other_real_estate: formData.otherRealEstate,
+            bedrooms: formData.bedrooms,
+            bathrooms: formData.bathrooms,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            source: 'Home Offer Survey - Complete',
+            timestamp: new Date().toISOString()
+          })
+        });
+
+        if (response.ok) {
+          document.getElementById('submission-status').style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        document.getElementById('submission-status').style.display = 'none';
+        document.getElementById('error-message').style.display = 'block';
+      }
+    }
+
+    // Initialize on page load
     window.onload = () => {
       const params = new URLSearchParams(window.location.search);
       const address = params.get('address');
+      const addressElement = document.getElementById('confirmed-address');
+      
       if (address) {
-        document.getElementById('confirmed-address').textContent = address;
+        addressElement.textContent = address;
+        addressElement.classList.remove('loading');
+      } else {
+        addressElement.textContent = 'No address provided';
+        addressElement.classList.remove('loading');
+        addressElement.classList.add('error');
       }
+      
+      updateProgress();
     };
   </script>
 
